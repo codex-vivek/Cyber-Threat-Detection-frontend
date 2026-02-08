@@ -83,7 +83,7 @@ const App: React.FC = () => {
   const fetchThreats = async () => {
     try {
       console.log("🔄 Manually refreshing threat feed...");
-      const response = await fetch('http://localhost:8010/threats');
+      const response = await fetch('https://cyber-threat-detection-backend-1.onrender.com/threats');
       if (response.ok) {
         const data = await response.json();
         setThreats(data.slice(0, 50));
@@ -96,7 +96,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     fetchThreats(); // Initial load
-    const ws = new WebSocket('ws://localhost:8010/ws/threats');
+    const ws = new WebSocket('https://cyber-threat-detection-backend-1.onrender.com/ws/threats');
     
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
@@ -127,7 +127,7 @@ const App: React.FC = () => {
     };
 
     try {
-      const response = await fetch(`http://localhost:8010/mitigate/${id}`, { 
+      const response = await fetch(`https://cyber-threat-detection-backend-1.onrender.com/mitigate/${id}`, { 
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
       });
@@ -852,7 +852,7 @@ const App: React.FC = () => {
                   <div className="p-4 rounded-xl bg-slate-900/50 border border-slate-800 space-y-4">
                     <div className="flex justify-between items-center">
                       <span className="text-sm font-medium">API Endpoint</span>
-                      <span className="text-xs font-mono text-blue-500">http://localhost:8010</span>
+                      <span className="text-xs font-mono text-blue-500">https://cyber-threat-detection-backend-1.onrender.com/</span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-sm font-medium">WebSocket Status</span>
